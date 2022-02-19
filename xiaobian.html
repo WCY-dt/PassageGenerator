@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Modernist by Steve Smith</title>
+
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>小编体生成器</h1>
+      <p>小编体相信大家都很熟悉，但是生成器是怎么回事呢？</p>
+      <ul>
+        <li><a href="https://wcy-dt.github.io/PassageGenerator/">Click to<strong>Return</strong></a></li>
+        <li><a href="https://github.com/WCY-dt/PassageGenerator">View On <strong>GitHub</strong></a></li>
+      </ul>
+    </header>
+    <section>
+      <table>
+        <tr>
+          <th class="leftth">
+            <!--<h3>请依次填入以下信息……</h3>-->
+            <form name="info_form">
+                <p>
+                  <input type="text" name="i_thing" value="" style="width:150px;" />
+                  相信大家都很熟悉
+                </p>
+                <hr/>
+                <p>
+                  但是
+                  <input type="text" name="i_action" value="" style="width:150px;" />
+                  是怎么回事呢？
+                </p>
+              <input class="inputbutton" type="button" name="button" value="生成" onclick="generate()"/>
+            </form>
+          </th>
+          <th>
+            <textarea name="result" id="result" readonly="readonly" style="height: 140px">
+            </textarea>
+          </th>
+        </tr>
+      </table>
+    </section>
+  </div>
+  <footer>
+    <p>Project maintained by <a href="http://github.com/orderedlist">Chenyang</a></p>
+    <p>Hosted on GitHub Pages</p>
+  </footer>
+  <script src="javascripts/scale.fix.js"></script>
+  <script>
+
+    function get_inputs() {
+      return document.querySelectorAll("form > p > input");
+    }
+
+    var init_arrays = [];
+
+    init_arrays.push({
+      i_thing: "不穿衣服",
+      i_action: "被当作耍流氓"
+    });
+
+
+    function initialize(init_array) {
+
+      var inputs = get_inputs();
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = init_array[inputs[i].name];
+      }
+      generate();
+    }
+
+    function generate() {
+      var inputs = get_inputs();
+      var result_text = result;
+
+      var template = "";
+      template += "    {{i_thing}}{{i_action}}是怎么回事呢？{{i_thing}}相信大家都很熟悉，但是{{i_action}}是怎么回事呢？下面就让小编带大家一起了解吧。\n";
+      template += "    {{i_thing}}{{i_action}}，其实就是{{i_action}}了。那么{{i_thing}}为什么会{{i_action}}，相信大家都很好奇是怎么回事。\n";
+      template += "    大家可能会感到很惊讶，{{i_thing}}怎么会{{i_action}}呢？但事实就是这样，小编也感到非常惊讶。";
+      template += "那么这就是关于{{i_thing}}{{i_action}}的事情了，大家有没有觉得很神奇呢？\n";
+      template += "    看了今天的内容，大家有什么想法呢？欢迎在评论区告诉小编一起讨论哦。";
+
+      for (var i = 0; i < inputs.length; i++) {
+        var regexp = new RegExp("\{\{" + inputs[i].name + "\}\}", "g");
+        template = template.replace(regexp, inputs[i].value, "g");
+      }
+      result_text.value = template;
+    }
+
+    initialize(init_arrays[Math.floor(Math.random() * init_arrays.length)]);
+  </script>
+</body>
+
+</html>
