@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>椰树椰汁生成器</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/yeshu.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>椰树椰汁生成器</h1>
+            <p>正宗椰树牌椰汁</p>
+            <ul>
+                <li><a href="https://wcy-dt.github.io/PassageGenerator/">Click to<strong>Return</strong></a></li>
+                <li><a href="https://github.com/WCY-dt/PassageGenerator">View On <strong>GitHub</strong></a></li>
+            </ul>
+        </header>
+        <section>
+            <div id="app" v-cloak>
+                <div id="preview">
+                    <div id="yeshu" :style="yeshuStyleObj" v-if="status != 'save'">
+                        <div class="yeshu-center">
+                            <div class="yeshu-title" contenteditable="true">
+                                椰子特产在海南
+                            </div>
+                            <div class="yeshu-inner">
+                                <div class="yeshu-zhengzong" contenteditable="true">
+                                    正宗
+                                </div>
+                                <div class="yeshu-brand" contenteditable="true">
+                                    椰树
+                                </div>
+                                <div class="yeshu-year" contenteditable="true">
+                                    30年
+                                </div>
+                                <div class="yeshu-island" contenteditable="true">
+                                    坚持在海南岛
+                                </div>
+                                <div class="yeshu-fresh" contenteditable="true">
+                                    用新鲜椰子肉
+                                </div>
+                                <div class="yeshu-xianzha" contenteditable="true">
+                                    鲜榨
+                                </div>
+                            </div>
+                        </div>
+                        <div class="yeshu-no-addon">
+                            <p contenteditable="true">不用椰浆</p>
+                            <p contenteditable="true">不加香精当生榨</p>
+                        </div>
+                    </div>
+                    <img id="save" v-if="status == 'save'" :src="dataURL" :style="yeshuStyleObj">
+                </div>
+                <div :style="{ height: saveBtnHeight + 'px', 'font-size': 0 }" v-if="status != 'save'">
+                    <button class="button" type="button" @click="save">
+                        {{ status == 'edit' ? '保存编辑' : '正在生成图片…' }}
+                    </button>
+                </div>
+                <div :style="{ height: saveBtnHeight + 'px', 'font-size': 0 }" v-if="status == 'save'">
+                    <button class="button" type="button">
+                        长按/右键图片保存
+                    </button>
+                    <button class="button" type="button" @click="back">
+                        返回修改
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>Project maintained by <a href="https://wcy-dt.github.io/">Chenyang</a></p>
+        <p>Hosted on GitHub Pages</p>
+    </footer>
+    <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/html2canvas.min.js"></script>
+    <script src="javascripts/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                yeshuStyleObj: {
+                    width: 'auto',
+                    height: 0
+                },
+                saveBtnHeight: 50,
+
+                status: 'edit',
+                dataURL: ''
+            },
+            mounted: function () {
+                var h = window.innerHeight || document.documentElement.clientHeight;
+                var previewHeight = h - this.saveBtnHeight;
+                this.yeshuStyleObj.height = previewHeight + 'px';
+                this.yeshuStyleObj.width = (previewHeight / 2.1) + 'px';
+
+                document.documentElement.style.fontSize = (previewHeight / 21) + 'px';
+            },
+            methods: {
+                back: function () {
+                    this.status = 'edit';
+                },
+                save: function () {
+                    var self = this;
+                    this.status = 'wait';
+
+                    var yeshu = document.getElementById('yeshu');
+
+                    yeshu.scrollIntoView();
+
+                    html2canvas(yeshu, {
+                        onrendered: function (canvas) {
+                            self.dataURL = canvas.toDataURL('image/png');
+                            self.status = 'save';
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

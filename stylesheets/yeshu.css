@@ -1,0 +1,129 @@
+html,
+body {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+#yeshu {
+    width: auto;
+    height: 0;
+
+    margin: 0 auto;
+    background-color: #000;
+    border: 2px solid #FEEF50;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: .2rem 0;
+
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+}
+
+#save {
+    margin: 0 auto;
+    display: block;
+    vertical-align: bottom;
+}
+
+.yeshu-center {
+    margin: 0 .4rem;
+    background-color: #FEEF50;
+    padding: .1rem;
+}
+
+.yeshu-title {
+    color: #000;
+    height: 5%;
+    font-size: 1.1rem;
+}
+
+.yeshu-inner {
+    background-color: #0021FC;
+    border: .04rem solid #000000;
+    color: #ffffff;
+    padding: .04rem .04rem .4rem;
+}
+
+.yeshu-zhengzong {
+    font-size: 1.1rem;
+    vertical-align: baseline;
+    margin: .1rem 0;
+}
+
+.yeshu-brand {
+    border: .04rem solid #FEEF50;
+    border-radius: 0.5rem;
+    background-color: #FD0000;
+    padding: .1rem;
+
+    font-size: 3.6rem;
+}
+
+.yeshu-year {
+    margin: .1rem 0;
+    text-shadow: -.04rem -.04rem 0 #000,
+        .04rem -.04rem 0 #000,
+        -.04rem .04rem 0 #000,
+        .04rem .04rem 0 #000;
+    font-size: 3.3rem;
+}
+
+.yeshu-island {
+    color: #FEEF50;
+    font-size: 1.2rem;
+}
+
+.yeshu-fresh {
+    border: .08rem solid #FD0000;
+    border-radius: .1rem;
+    background-color: #FEEF50;
+    color: #FD0000;
+    margin: .1rem -.1rem;
+    padding: .1rem;
+
+    font-size: 1.2rem;
+}
+
+.yeshu-xianzha {
+    color: #FEEF50;
+    font-size: 4rem;
+    text-shadow: -.04rem -.04rem 0 #000,
+        .04rem -.04rem 0 #000,
+        -.04rem .04rem 0 #000,
+        .04rem .04rem 0 #000;
+}
+
+.yeshu-no-addon {
+    border: .06rem solid #FEEF50;
+    border-radius: 0.3rem;
+    background-color: #FD0000;
+    padding: .1rem;
+    margin: -.1rem .1rem;
+    color: #ffffff;
+}
+
+.yeshu-no-addon>p {
+    line-height: 1;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.yeshu-no-addon>p:first-child {
+    font-size: 1.5rem;
+}
+
+.button {
+    text-align: center;
+    width:100%;
+    display: inline-block;
+    align-self: center;
+    padding:  5px;
+}
